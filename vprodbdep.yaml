@@ -31,10 +31,10 @@ spec:
         volumeMounts:
           - name: vpro-db-data
             mountPath: /var/lib/mysql 
-       nodeSelector:
-          zone: us-east-1a
-       volumes:
-       - name: vpro-db-data
-         awsElasticBlockStore:
-           volumeID: vol-01706acdcaaef34eb
-           fsType: ext4
+      nodeSelector:
+        zone: us-east-1a
+      volumes:
+      - name: vpro-db-data
+        awsElasticBlockStore:
+          volumeID: vol-01706acdcaaef34eb
+          fsType: ext4
