@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vroapp
+  labels: 
+    app: vproapp
+spec:
+  selector:
+    matchLabels:
+      app: vroapp
+  template:
+    metadata:
+      labels:
+        app: vroapp
+    spec:
+      containers:
+      - name: vroapp
+        image: vprofileapp:V1
+        ports:
+        - containerPort: 8080
+          name: vproapp-port
+      initContainers:
+      -  name: init-mydb
+         image: busybox
+         command: ['sh','-c','until nslookup vprodb; do echo waiting for mydb; sleep 2; done;']
+      -  name: init-memcache
+         image: busybox
+         command: ['sh','-c','until nslookup vprocache01; do echo waiting for memcache; sleep 2; done;']

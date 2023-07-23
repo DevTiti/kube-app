@@ -20,4 +20,3 @@ spec:
         ports:
         - name: vpromc-port
           containerPort: 11211
-          
